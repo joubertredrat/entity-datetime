@@ -89,4 +89,20 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
             $entity->getCreatedAtString($customFormat)
         );
     }
+
+    /**
+     * @return void
+     */
+    public function testHasDate(): void
+    {
+        self::assertTrue(false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testNotHasDate(): void
+    {
+        self::assertFalse(true);
+    }
 }
