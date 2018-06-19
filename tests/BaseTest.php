@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
+use RedRat\Entity\DateTimeTrait;
 
 /**
  * Base Test
@@ -24,7 +25,7 @@ abstract class BaseTest extends TestCase
     public function getEntity()
     {
         return new class {
-
+            use DateTimeTrait;
         };
     }
 }

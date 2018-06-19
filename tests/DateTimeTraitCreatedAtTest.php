@@ -21,9 +21,11 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
      */
     public function testGetWithDateTime(): void
     {
-        $updatedAt = new \DateTime('now');
+        $entity = $this->getEntity();
+        $createdAt = new \DateTime('now');
+        $entity->setCreatedAt($createdAt);
 
-        self::assertSame($updatedAt, null);
+        self::assertSame($createdAt, $entity->getCreatedAt());
     }
 
     /**
@@ -31,7 +33,9 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
      */
     public function testGetWithNull(): void
     {
-        self::assertSame(null, false);
+        $entity = $this->getEntity();
+
+        self::assertNull($entity->getCreatedAt());
     }
 
     /**
@@ -39,7 +43,10 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
      */
     public function testForgeWithDateTime(): void
     {
-        self::assertInstanceOf(\DateTime::class, null);
+        $entity = $this->getEntity();
+        $entity->forgeCreatedAt();
+
+        self::assertInstanceOf(\DateTime::class, $entity->getCreatedAt());
     }
 
     /**
@@ -47,7 +54,9 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
      */
     public function testGetStringWithNull(): void
     {
-        self::assertSame(null, false);
+        $entity = $this->getEntity();
+
+        self::assertNull($entity->getCreatedAtString());
     }
 
     /**
@@ -55,11 +64,13 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
      */
     public function testGetStringWithDefaultDateFormat(): void
     {
-        $updatedAt = new \DateTime('2001-02-03 04:05:06');
+        $entity = $this->getEntity();
+        $createdAt = new \DateTime('2001-02-03 04:05:06');
+        $entity->setCreatedAt($createdAt);
 
         self::assertEquals(
-            $updatedAt->format('Y-m-d H:i:s'),
-            null
+            $createdAt->format('Y-m-d H:i:s'),
+            $entity->getCreatedAtString()
         );
     }
 
@@ -68,12 +79,14 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
      */
     public function testGetStringWithCustomDateFormat(): void
     {
-        $updatedAt = new \DateTime('2018-01-02 03:04:05');
+        $entity = $this->getEntity();
+        $createdAt = new \DateTime('2018-01-02 03:04:05');
+        $entity->setCreatedAt($createdAt);
         $customFormat = 'm/d/Y g:i A';
 
         self::assertEquals(
-            $updatedAt->format($customFormat),
-            null
+            $createdAt->format($customFormat),
+            $entity->getCreatedAtString($customFormat)
         );
     }
 }

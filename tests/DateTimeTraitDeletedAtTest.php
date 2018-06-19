@@ -21,9 +21,11 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
      */
     public function testGetWithDateTime(): void
     {
+        $entity = $this->getEntity();
         $deletedAt = new \DateTime('now');
+        $entity->setDeletedAt($deletedAt);
 
-        self::assertSame($deletedAt, null);
+        self::assertSame($deletedAt, $entity->getDeletedAt());
     }
 
     /**
@@ -31,7 +33,9 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
      */
     public function testGetWithNull(): void
     {
-        self::assertSame(null, false);
+        $entity = $this->getEntity();
+
+        self::assertNull($entity->getDeletedAt());
     }
 
     /**
@@ -39,7 +43,10 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
      */
     public function testForgeWithDateTime(): void
     {
-        self::assertInstanceOf(\DateTime::class, null);
+        $entity = $this->getEntity();
+        $entity->forgeDeletedAt();
+
+        self::assertInstanceOf(\DateTime::class, $entity->getDeletedAt());
     }
 
     /**
@@ -47,7 +54,9 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
      */
     public function testGetStringWithNull(): void
     {
-        self::assertSame(null, false);
+        $entity = $this->getEntity();
+
+        self::assertNull($entity->getDeletedAtString());
     }
 
     /**
@@ -55,11 +64,13 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
      */
     public function testGetStringWithDefaultDateFormat(): void
     {
+        $entity = $this->getEntity();
         $deletedAt = new \DateTime('2001-02-03 04:05:06');
+        $entity->setDeletedAt($deletedAt);
 
         self::assertEquals(
             $deletedAt->format('Y-m-d H:i:s'),
-            null
+            $entity->getDeletedAtString()
         );
     }
 
@@ -68,12 +79,14 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
      */
     public function testGetStringWithCustomDateFormat(): void
     {
+        $entity = $this->getEntity();
         $deletedAt = new \DateTime('2018-01-02 03:04:05');
+        $entity->setDeletedAt($deletedAt);
         $customFormat = 'm/d/Y g:i A';
 
         self::assertEquals(
             $deletedAt->format($customFormat),
-            null
+            $entity->getDeletedAtString($customFormat)
         );
     }
 }
