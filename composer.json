@@ -1,5 +1,8 @@
 {
     "name": "redrat/entity-datetime",
+    "description": "Datetime trait for entities",
+    "keywords": ["php", "trait", "datetime"],
+    "homepage": "https://github.com/joubertredrat/entity-datetime",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -23,6 +26,15 @@
         "php": ">=7.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.2"
+        "phpunit/phpunit": "^7.2",
+        "symfony/var-dumper": "^4.1",
+        "squizlabs/php_codesniffer": "^3.3"
+    },
+    "scripts": {
+        "psr2": [
+            "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --extensions=php,inc,lib src/",
+            "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --extensions=php,inc,lib tests/"
+        ],
+        "tests": "vendor/phpunit/phpunit/phpunit -c phpunit.xml"
     }
 }
