@@ -2,6 +2,14 @@
 
 Trait for easy manage useful datetime in entities.
 
+#### Install
+
+Install by composer
+
+```
+composer require redrat/entity-datetime
+```
+
 #### Usage
 
 ##### With Doctrine
@@ -22,6 +30,13 @@ class Foo
 2 - Set `lifecycleCallbacks` in your Doctrine configuration, like example below:
 
 ```yaml
+    fields:
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+            nullable: true
+            
     lifecycleCallbacks:
         prePersist: [ forgeCreatedAt ]
         preUpdate: [ forgeUpdatedAt ]
