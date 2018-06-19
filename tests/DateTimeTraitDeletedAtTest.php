@@ -95,7 +95,12 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
      */
     public function testHasDate(): void
     {
-        self::assertTrue(false);
+        $entity = $this->getEntity();
+        $entity->setDeletedAt(
+            new \DateTime('now')
+        );
+
+        self::assertTrue($entity->hasDeletedAt());
     }
 
     /**
@@ -103,6 +108,8 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
      */
     public function testNotHasDate(): void
     {
-        self::assertFalse(true);
+        $entity = $this->getEntity();
+
+        self::assertFalse($entity->hasDeletedAt());
     }
 }

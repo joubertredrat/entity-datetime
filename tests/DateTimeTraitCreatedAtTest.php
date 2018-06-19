@@ -95,7 +95,12 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
      */
     public function testHasDate(): void
     {
-        self::assertTrue(false);
+        $entity = $this->getEntity();
+        $entity->setCreatedAt(
+            new \DateTime('now')
+        );
+
+        self::assertTrue($entity->hasCreatedAt());
     }
 
     /**
@@ -103,6 +108,8 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
      */
     public function testNotHasDate(): void
     {
-        self::assertFalse(true);
+        $entity = $this->getEntity();
+
+        self::assertFalse($entity->hasCreatedAt());
     }
 }
