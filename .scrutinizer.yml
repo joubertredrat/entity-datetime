@@ -12,7 +12,7 @@ build:
                 override:
                     - command: composer run coverage
                       coverage:
-                          file: /tests/_reports/logs/clover.xml
+                          file: tests/_reports/logs/clover.xml
                           format: clover
     dependencies:
         override:
