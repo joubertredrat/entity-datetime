@@ -1,28 +1,30 @@
 <?php
-/**
- * Entity Datetime
- *
- * @author Joubert RedRat <me+github@redrat.com.br>
- */
 
 declare(strict_types=1);
 
 namespace Tests;
+
+use DateTime;
+use DateTimeInterface;
+use Exception;
+use PHPUnit\Framework\TestCase;
+use RedRat\Entity\DateTimeDeletedTrait;
 
 /**
  * DateTimeTraitDeletedAt Test
  *
  * @package Tests
  */
-final class DateTimeTraitDeletedAtTest extends BaseTest
+final class DateTimeTraitDeletedAtTest extends TestCase
 {
     /**
      * @return void
+     * @throws Exception
      */
     public function testGetWithDateTime(): void
     {
         $entity = $this->getEntity();
-        $deletedAt = new \DateTime('now');
+        $deletedAt = new DateTime('now');
         $entity->setDeletedAt($deletedAt);
 
         self::assertSame($deletedAt, $entity->getDeletedAt());
@@ -46,7 +48,7 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
         $entity = $this->getEntity();
         $entity->forgeDeletedAt();
 
-        self::assertInstanceOf(\DateTime::class, $entity->getDeletedAt());
+        self::assertInstanceOf(DateTimeInterface::class, $entity->getDeletedAt());
     }
 
     /**
@@ -61,11 +63,12 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
 
     /**
      * @return void
+     * @throws Exception
      */
     public function testGetStringWithDefaultDateFormat(): void
     {
         $entity = $this->getEntity();
-        $deletedAt = new \DateTime('2001-02-03 04:05:06');
+        $deletedAt = new DateTime('2001-02-03 04:05:06');
         $entity->setDeletedAt($deletedAt);
 
         self::assertEquals(
@@ -76,11 +79,12 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
 
     /**
      * @return void
+     * @throws Exception
      */
     public function testGetStringWithCustomDateFormat(): void
     {
         $entity = $this->getEntity();
-        $deletedAt = new \DateTime('2018-01-02 03:04:05');
+        $deletedAt = new DateTime('2018-01-02 03:04:05');
         $entity->setDeletedAt($deletedAt);
         $customFormat = 'm/d/Y g:i A';
 
@@ -92,12 +96,13 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
 
     /**
      * @return void
+     * @throws Exception
      */
     public function testHasDate(): void
     {
         $entity = $this->getEntity();
         $entity->setDeletedAt(
-            new \DateTime('now')
+            new DateTime('now')
         );
 
         self::assertTrue($entity->hasDeletedAt());
@@ -106,10 +111,21 @@ final class DateTimeTraitDeletedAtTest extends BaseTest
     /**
      * @return void
      */
-    public function testNotHasDate(): void
+    public function testHasNotDate(): void
     {
         $entity = $this->getEntity();
 
         self::assertFalse($entity->hasDeletedAt());
+    }
+
+    /**
+     * @return object
+     * @todo implement return type Object
+     */
+    public function getEntity()
+    {
+        return new class {
+            use DateTimeDeletedTrait;
+        };
     }
 }
