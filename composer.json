@@ -35,6 +35,7 @@
             "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --extensions=php,inc,lib src/",
             "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --extensions=php,inc,lib tests/"
         ],
-        "tests": "vendor/phpunit/phpunit/phpunit -c phpunit.xml"
+        "tests": "vendor/phpunit/phpunit/phpunit -c phpunit.xml --no-coverage",
+        "coverage": "vendor/phpunit/phpunit/phpunit -c phpunit.xml"
     }
 }
