@@ -1,28 +1,30 @@
 <?php
-/**
- * Entity Datetime
- *
- * @author Joubert RedRat <me+github@redrat.com.br>
- */
 
 declare(strict_types=1);
 
 namespace Tests;
+
+use DateTime;
+use DateTimeInterface;
+use Exception;
+use PHPUnit\Framework\TestCase;
+use RedRat\Entity\DateTimeCreatedTrait;
 
 /**
  * DateTimeTraitCreatedAt Test
  *
  * @package Tests
  */
-final class DateTimeTraitCreatedAtTest extends BaseTest
+final class DateTimeTraitCreatedAtTest extends TestCase
 {
     /**
      * @return void
+     * @throws Exception
      */
     public function testGetWithDateTime(): void
     {
         $entity = $this->getEntity();
-        $createdAt = new \DateTime('now');
+        $createdAt = new DateTime('now');
         $entity->setCreatedAt($createdAt);
 
         self::assertSame($createdAt, $entity->getCreatedAt());
@@ -46,7 +48,7 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
         $entity = $this->getEntity();
         $entity->forgeCreatedAt();
 
-        self::assertInstanceOf(\DateTime::class, $entity->getCreatedAt());
+        self::assertInstanceOf(DateTimeInterface::class, $entity->getCreatedAt());
     }
 
     /**
@@ -61,11 +63,12 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
 
     /**
      * @return void
+     * @throws Exception
      */
     public function testGetStringWithDefaultDateFormat(): void
     {
         $entity = $this->getEntity();
-        $createdAt = new \DateTime('2001-02-03 04:05:06');
+        $createdAt = new DateTime('2001-02-03 04:05:06');
         $entity->setCreatedAt($createdAt);
 
         self::assertEquals(
@@ -76,11 +79,12 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
 
     /**
      * @return void
+     * @throws Exception
      */
     public function testGetStringWithCustomDateFormat(): void
     {
         $entity = $this->getEntity();
-        $createdAt = new \DateTime('2018-01-02 03:04:05');
+        $createdAt = new DateTime('2018-01-02 03:04:05');
         $entity->setCreatedAt($createdAt);
         $customFormat = 'm/d/Y g:i A';
 
@@ -92,12 +96,13 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
 
     /**
      * @return void
+     * @throws Exception
      */
     public function testHasDate(): void
     {
         $entity = $this->getEntity();
         $entity->setCreatedAt(
-            new \DateTime('now')
+            new DateTime('now')
         );
 
         self::assertTrue($entity->hasCreatedAt());
@@ -106,10 +111,21 @@ final class DateTimeTraitCreatedAtTest extends BaseTest
     /**
      * @return void
      */
-    public function testNotHasDate(): void
+    public function testHasNotDate(): void
     {
         $entity = $this->getEntity();
 
         self::assertFalse($entity->hasCreatedAt());
+    }
+
+    /**
+     * @return object
+     * @todo implement return type Object
+     */
+    public function getEntity()
+    {
+        return new class {
+            use DateTimeCreatedTrait;
+        };
     }
 }
