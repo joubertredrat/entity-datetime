@@ -1,0 +1,19 @@
+build:
+    nodes:
+        coverage:
+            environment:
+                php:
+                    version: 7.1
+            cache:
+                disabled: false
+                directories:
+                    - ~/.composer/cache
+            tests:
+                override:
+                    - command: composer run coverage
+                      coverage:
+                          file: /tests/_reports/logs/clover.xml
+                          format: clover
+    dependencies:
+        override:
+            - composer install --no-interaction --no-suggest --no-progress
