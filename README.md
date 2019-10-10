@@ -3,6 +3,10 @@
 [![Build Status](https://travis-ci.org/joubertredrat/entity-datetime.svg?branch=master)](https://travis-ci.org/joubertredrat/entity-datetime)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/badges/build.png?b=master)](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/redrat/entity-datetime/v/stable)](https://packagist.org/packages/redrat/entity-datetime)
+[![Total Downloads](https://poser.pugx.org/redrat/entity-datetime/downloads)](https://packagist.org/packages/redrat/entity-datetime)
+[![License](https://poser.pugx.org/redrat/entity-datetime/license)](https://packagist.org/packages/redrat/entity-datetime)
 
 Trait for easy manage useful datetime in entities.
 
