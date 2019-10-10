@@ -1,0 +1,25 @@
+sudo: false
+
+language: php
+
+php:
+    - '7.1'
+    - '7.2'
+    - '7.3'
+
+cache:
+    directories:
+        - $HOME/.composer/cache
+
+env:
+    global:
+        - COMPOSER_ARGS="--dev"
+
+before_script:
+    - composer self-update
+    - composer install --no-interaction --no-suggest --no-progress
+
+script:
+    - composer run psr2
+    - composer run tests
+    - composer run coverage
