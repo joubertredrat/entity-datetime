@@ -1,5 +1,9 @@
 # Entity datetime
 
+[![Build Status](https://travis-ci.org/joubertredrat/entity-datetime.svg?branch=master)](https://travis-ci.org/joubertredrat/entity-datetime)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/badges/build.png?b=master)](https://scrutinizer-ci.com/g/joubertredrat/entity-datetime/build-status/master)
+
 Trait for easy manage useful datetime in entities.
 
 #### Install
